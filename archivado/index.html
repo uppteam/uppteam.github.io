@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    	<meta name="author" content="Susana Ocampo Santos">
+    	<title>Estrategias de enseñanza para probabilidad y estadística</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/treemap.js"></script>
+        <script src="https://code.highcharts.com/modules/treegraph.js"></script>
+        <script src="https://code.highcharts.com/modules/venn.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    </head>
+	<body style="background-color: #e7e7e7;">
+    	<div class="container mt-3">
+       		<h1>Estrategias de enseñanza para probabilidad y estadística</h1>
+            <h2>Por: Susana Ocampo Santos</h2>
+            <div aria-live="polite" aria-atomic="true" class="position-relative">
+                <div class="toast-container top-0 end-0 p-3">
+                    <div id="alertamonedas" class="toast align-items-right text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div id="mensajealertamonedas" class="toast-body">
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text m-3">
+                        <span>Al tirar dos monedas de manera aleatoria <i>n</i> veces los resultados son los siguientes:</span>
+                        <div class="row mt-3">
+                            <div class="col-8">
+                                <table class="table table-bordered table-striped table-hover table-warning">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" scope="col"></th>
+                                            <th class="text-center" scope="col">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th class="text-center align-middle" rowspan="2" scope="row">1ra Moneda</th>
+                                            <td class="text-center">Cara</td>
+                                            <td class="text-center"><b id="cara1" class="monedastiradas"></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">Cruz</td>
+                                            <td class="text-center"><b id="cruz1" class="monedastiradas"></b></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center align-middle" rowspan="2" scope="row">2da Moneda</th>
+                                            <td class="text-center">Cara</td>
+                                            <td class="text-center"><b id="cara2" class="monedastiradas"></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">Cruz</td>
+                                            <td class="text-center"><b id="cruz2" class="monedastiradas"></b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text bg-primary text-white" id="basic-addon1">No. de tiradas</span>
+                                    <input id="tiradas" type="number" min="2" class="form-control text-center" placeholder="Ingresa un número" aria-describedby="botontiradas">
+                                    <button class="btn btn-success" type="button" id="botonmonedas">Calcular</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div aria-live="polite" aria-atomic="true" class="position-relative">
+                <div class="toast-container top-0 end-0 p-3">
+                    <div id="alerta" class="toast align-items-right text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div id="mensajealerta" class="toast-body">
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Representación tabular</h5>
+                    <div class="card-text m-3">
+                        <div class="row">
+                            <div class="col-1">
+                            </div> 
+                            <div class="col-4">
+                            </div>
+                            <div class="col-3 text-center p-3">
+                                <span>B</span>
+                            </div>
+                            <div class="col-3 text-center p-3">
+                                <span style="text-decoration: overline;">B</span>
+                            </div> 
+                            <div class="col-1">
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                            </div> 
+                            <div class="col-4 border border-end-0 border-dark p-3">
+                                <span>Donadores</span>
+                            </div>
+                            <div class="col-3 border border-end-0 border-dark text-center p-3 bg-warning">
+                                <span>Tiene el tipo de sangre</span>
+                            </div>
+                            <div class="col-3 border border-dark text-center p-3 bg-warning">
+                                <span>No tiene el tipo de sangre</span>
+                            </div> 
+                            <div class="col-1">
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-1 text-center p-3">
+                                <span>A</span>
+                            </div> 
+                            <div class="col-4 border border-end-0 border-top-0 border-dark p-3 text-white bg-info">
+                                <span>Ya ha donado</span>
+                            </div>
+                            <div class="col-3 border border-end-0 border-top-0 border-dark text-center p-3">
+                                <input type="number" min="1" placeholder="Ingresa un número" value="7" a="0" b="0" class="probabilidad border border-info form-control text-center">
+                            </div>
+                            <div class="col-3 border border-top-0 border-dark text-center p-3">
+                                <input type="number" min="1" placeholder="Ingresa un número" value="6" a="0" b="1" class="probabilidad border border-info form-control text-center">
+                            </div> 
+                            <div class="col-1 border border-start-0 border-dark text-center p-3">
+                                <b class="valordinamico" id="valora">13</b>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-1 text-center p-3">
+                                <span style="text-decoration: overline;">A</span>
+                            </div> 
+                            <div class="col-4 border border-end-0 border-top-0 border-dark p-3 text-white bg-info">
+                                <span>No ha donado</span>
+                            </div>
+                            <div class="col-3 border border-end-0 border-top-0 border-dark text-center p-3">
+                                <input type="number" min="1" placeholder="Ingresa un número" value="5" a="1" b="0" class="probabilidad border border-info form-control text-center">
+                            </div>
+                            <div class="col-3 border border-top-0 border-dark text-center p-3">
+                                <input type="number" min="1" placeholder="Ingresa un número" value="2" a="1" b="1" class="probabilidad border border-info form-control text-center">
+                            </div> 
+                            <div class="col-1 border border-top-0 border-start-0 border-dark text-center p-3">
+                                <b class="valordinamico" id="valorb">7</b>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                            </div> 
+                            <div class="col-4">
+                            </div>
+                            <div class="col-3 border border-end-0 border-top-0 border-dark text-center p-3">
+                                <b class="valordinamico" id="valorab">12</b>
+                            </div>
+                            <div class="col-3 border border-top-0 border-dark text-center p-3">
+                                <b class="valordinamico" id="valorba">8</b>
+                            </div> 
+                            <div class="col-1 border border-top-0 border-start-0 border-dark text-center p-3">
+                                <input id="total" type="number" readonly="true" min="1" placeholder="Ingresa un número" value="20" class="border border-info form-control text-center">
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-4 text-center text-danger p-3">
+                                <b>P(A) = </b><b id="pa" class="valordinamico resultadoprobabilidad"><sup>13</sup> &#8260; <sub>20</sub> = 65%</b>
+                            </div> 
+                            <div class="col-4 text-center text-danger p-3">
+                                <b>P(<span style="text-decoration: overline;">A</span>) = </b><b id="pb" class="valordinamico resultadoprobabilidad"><sup>7</sup> &#8260; <sub>20</sub> = 35%</b>
+                            </div>
+                            <div class="col-4 text-center text-danger p-3">
+                                <b>P(B) = </b><b id="pab" class="valordinamico resultadoprobabilidad"><sup>12</sup> &#8260; <sub>20</sub> = 60%</b>
+                            </div>
+                            <div class="col-4 text-center text-danger p-3">
+                                <b>P(<span style="text-decoration: overline;">B</span>) = </b><b id="pba" class="valordinamico resultadoprobabilidad"><sup>8</sup> &#8260; <sub>20</sub> = 40%</b>
+                            </div>
+                            <div class="col-4 text-center text-danger p-3">
+                                <b>P(B|A) = </b><b id="paobo" class="valordinamico resultadoprobabilidad"><sup>7</sup> &#8260; <sub>13</sub> = 53.85%</b>
+                            </div>
+                            <div class="col-4 text-center text-danger p-3">
+                                <b>P(<span style="text-decoration: overline;">B</span>|A) = </b><b id="paobi" class="valordinamico resultadoprobabilidad"><sup>6</sup> &#8260; <sub>13</sub> = 46.15%</b>
+                            </div>
+                            <div class="col-4 text-center text-danger p-3">
+                                <b>P(B|<span style="text-decoration: overline;">A</span>) = </b><b id="paibo" class="valordinamico resultadoprobabilidad"><sup>6</sup> &#8260; <sub>13</sub> = 46.15%</b>
+                            </div>
+                            <div class="col-4 text-center text-danger p-3">
+                                <b>P(<span style="text-decoration: overline;">B</span>|<span style="text-decoration: overline;">A</span>) = </b><b id="paibi" class="valordinamico resultadoprobabilidad"><sup>6</sup> &#8260; <sub>13</sub> = 46.15%</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfica de árbol</h5>
+                    <div class="card-text m-3">
+                        <figure class="highcharts-figure">
+                            <div id="graficaarbol"></div>
+                                <p class="highcharts-description text-center">
+                                    Regla de multiplicación de probabilidades: intersecciones
+                                </p>
+                        </figure>    
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">Diagrama de Venn</h5>
+                    <div class="card-text m-3">
+                        <figure class="highcharts-figure">
+                            <div id="graficavenn"></div>
+                                <p class="highcharts-description text-center">
+                                    Mueve el cursor sobre cada conjunto para visualizar la probabilidad del evento
+                                </p>
+                        </figure>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function(){
+                var alertamoneda = $('#alertamonedas');
+                var toastmoneda = new bootstrap.Toast(alertamoneda);
+                var alerta = $('#alerta');
+                var toast = new bootstrap.Toast(alerta);
+                var graficaarbol = null;
+                var graficavenn = null;
+
+                $('#botonmonedas').click(function(){
+                    var tiradast = $('#tiradas').val();
+                    var tiradas = parseInt(tiradast);
+                    if(tiradast == '' || tiradas < 2 || tiradas % 2 != 0) {
+                        $('#mensajealertamonedas').html('El total tiene que ser un número natural par mayor o igual a 2');
+                        $('.monedastiradas').each(function(){
+                            $(this).html('');
+                        });
+                        toastmoneda.show();
+                        return;
+                    }
+
+                    for(var i = 1; i <= 2; i++) {
+                        var tiradasmoneda = tiradas / 2;
+                        var aleatorio = Math.floor(Math.random() * tiradasmoneda);
+                        $('#cara' + i).html(aleatorio);
+                        $('#cruz' + i).html(tiradasmoneda - aleatorio);
+                    }
+                    
+                });
+
+                $('#total').on('change', function(){
+                    toast.hide();
+                    var total = $(this).val();
+                    var valido = true;
+                    var probabilidad;
+                    var campos = 0;
+                    $('.resultadoprobabilidad').each(function(){
+                        $(this).html('');
+                    });
+
+                    $('.probabilidad').each(function(){
+                        probabilidad = $(this).val();
+                        if (probabilidad == '') {
+                            valido = false;
+                        } else {
+                            campos += parseInt(probabilidad);
+                        }
+                    });
+                    
+                    if(total == '') {
+                        $('#mensajealerta').html('El total tiene que ser un número natural mayor o igual a 4');
+                        toast.show();
+                        return;
+                    }
+                    total = parseInt(total);
+                    if(!valido) {
+                        $('#mensajealerta').html('Los valores tienen que ser números naturales mayores a 0');
+                        toast.show();
+                        return;
+                    }
+                    if(total != campos) {
+                        $('#mensajealerta').html('La sumatoria de los valores no corresponde con el total');
+                        toast.show();
+                        return;
+                    }
+
+                    var primero = parseInt($('input[a="0"][b="0"]').val());
+                    var segundo = parseInt($('input[a="0"][b="1"]').val());
+                    var tercero = parseInt($('input[a="1"][b="0"]').val());
+                    var cuarto = parseInt($('input[a="1"][b="1"]').val());
+                    var pao = parseFloat($('#valora').html());
+                    var pai = parseFloat($('#valorb').html());
+                    var pbo = parseFloat($('#valorab').html());
+                    var pbi = parseFloat($('#valorba').html());
+                    var pa = (pao / parseFloat(total) * 100).toFixed(2);
+                    var pb = (pai / parseFloat(total) * 100).toFixed(2);
+                    var pab = (pbo / parseFloat(total) * 100).toFixed(2);
+                    var pba = (pbi / parseFloat(total) * 100).toFixed(2);
+                    var paobo = (parseFloat(primero) / parseFloat(pao) * 100).toFixed(2);
+                    var paobi = (parseFloat(segundo) / parseFloat(pao) * 100).toFixed(2);
+                    var paibo = (parseFloat(tercero) / parseFloat(pai) * 100).toFixed(2);
+                    var paibi = (parseFloat(cuarto) / parseFloat(pai) * 100).toFixed(2);
+                    var pcaobo = (parseFloat(primero) / total * 100).toFixed(2);
+                    var pcaobi = (parseFloat(segundo) / total * 100).toFixed(2);
+                    var pcaibo = (parseFloat(tercero) / total * 100).toFixed(2);
+                    var pcaibi = (parseFloat(cuarto) / total * 100).toFixed(2);
+                    $('#pa').html('<sup>' + $('#valora').html() + '</sup> &#8260; <sub>' + total + '</sub> = ' + pa + '%');
+                    $('#pb').html('<sup>' + $('#valorb').html() + '</sup> &#8260; <sub>' + total + '</sub> = ' + pb + '%');
+                    $('#pab').html('<sup>' + $('#valorab').html() + '</sup> &#8260; <sub>' + total + '</sub> = ' + pab + '%');
+                    $('#pba').html('<sup>' + $('#valorba').html() + '</sup> &#8260; <sub>' + total + '</sub> = ' + pba + '%');
+                    $('#paobo').html('<sup>' + primero + '</sup> &#8260; <sub>' + pao + '</sub> = ' + paobo + '%');
+                    $('#paobi').html('<sup>' + segundo + '</sup> &#8260; <sub>' + pao + '</sub> = ' + paobi + '%');
+                    $('#paibo').html('<sup>' + tercero + '</sup> &#8260; <sub>' + pai + '</sub> = ' + paibo + '%');
+                    $('#paibi').html('<sup>' + cuarto + '</sup> &#8260; <sub>' + pai + '</sub> = ' + paibi + '%');
+
+                    if(graficaarbol != null) {
+                        graficaarbol.destroy();
+                    }
+                    graficaarbol = Highcharts.chart('graficaarbol', {
+                        chart: {
+                            spacingBottom: 30,
+                            marginRight: 180,
+                        },
+                        title: {
+                            text: 'Gráfica de árbol de probabilidades'
+                        },
+                        series: [{
+                            type: 'treegraph',
+                            keys: ['parent', 'id', 'level'],
+                            clip: false,
+                            data: [
+                                [undefined, ' '],
+                                [' ', 'Ya ha donado:<br>' + pa + '%'],
+                                [' ', 'No ha donado:<br>' + pb + '%'],
+                                ['No ha donado:<br>' + pb + '%', 'No ha donado y<br>tiene el tipo de sangre:<br>' + pcaibo + '%'],
+                                ['No ha donado:<br>' + pb + '%', 'No ha donado y<br>no tiene el tipo de sangre:<br>' + pcaibi + '%'],
+                                ['Ya ha donado:<br>' + pa + '%', 'Ya ha donado y<br>tiene el tipo de sangre:<br>' + pcaobo + '%'],
+                                ['Ya ha donado:<br>' + pa + '%', 'Ya ha donado y<br>no tiene el tipo de sangre:<br>' + pcaobi + '%']
+                            ],
+                            marker: {
+                                symbol: 'circle',
+                                radius: 6,
+                                fillColor: '#ffffff',
+                                lineWidth: 3
+                            },
+                            dataLabels: {
+                                align: 'left',
+                                pointFormat: '{point.id}',
+                                style: {
+                                    color: '#000000',
+                                    textOutline: '3px #ffffff',
+                                    whiteSpace: 'nowrap'
+                                },
+                                x: 24,
+                                crop: false,
+                                overflow: 'none'
+                            },
+                            levels: [
+                                {
+                                    level: 1,
+                                    levelIsConstant: false
+                                },
+                                {
+                                    level: 2,
+                                    colorByPoint: true
+                                }
+                            ]
+                        }]
+                    });
+
+                    if(graficavenn != null) {
+                        graficavenn.destroy();
+                    }
+                    graficavenn = Highcharts.chart('graficavenn', {
+                        chart: {
+                            events:{
+                                load: function() {
+                                    $('#graficavenn').find('.highcharts-plot-background').attr('style', 'stroke-width:1;stroke:rgb(0,0,0)');
+                                }
+                            }
+                        },
+                        plotOptions: {
+                            series: {
+                                dataLabels: {
+                                    enabled: true
+                                }
+                            }
+                        },
+                        tooltip: {
+                            useHTML: true,
+                            formatter: function() {
+                                var valor = this.point.value;
+                                var porcentaje = (parseFloat(valor) / parseFloat(total) * 100).toFixed(2);
+                                return '<div class="text-center" style="z-index: 10000;"><b>' + this.point.name + '</b><br><br><sup>' + valor + '</sup> &#8260; <sub>' + total + '</sub> = ' + porcentaje + '%</div>';
+                            } 
+                        },
+                        series: [{
+                            type: 'venn',
+                            name: 'Probabilidad',
+                            dataLabels: [{
+                                useHTML: true,
+                                formatter: function() {
+                                    var valor = this.point.value;
+                                    var nombre = this.point.name;
+                                    if (this.point.name == 'A' || this.point.name == 'B') {
+                                        valor = valor - primero;
+                                        nombre += ' - (A ∩ B)';
+                                    }
+                                    var porcentaje = (parseFloat(valor) / parseFloat(total) * 100).toFixed(2);
+                                    return '<h6 class="text-center text-white"><b>' + nombre + '</b><br><br><sup>' + valor + '</sup> &#8260; <sub>' + total + '</sub> = ' + porcentaje + '%</h6>';
+                                }
+                            }],
+                            data: [{
+                                    sets: ['A'],
+                                    value: pao,
+                                }, {
+                                    sets: ['B'],
+                                    value: pbo
+                                }, { 
+                                    sets: ['AB'],
+                                    value: cuarto,
+                                    name: '<span style="text-decoration: overline;">A</span> ∩ <span style="text-decoration: overline;">B</span>',
+                                    color: '#FF0000'
+                                }, {
+                                    sets: ['A', 'B'],
+                                    value: primero,
+                                    name: 'A ∩ B',
+                                    color: '#7CFC00'
+                                }]
+                        }],
+                        title: {
+                            text: 'Diagrama de Venn de probabilidades'
+                        }
+                    });
+                });
+
+                $('.probabilidad').on('change', function(){
+                    toast.hide();
+                    var primerot = $('input[a="0"][b="0"]').val();
+                    var segundot = $('input[a="0"][b="1"]').val();
+                    var tercerot = $('input[a="1"][b="0"]').val();
+                    var cuartot = $('input[a="1"][b="1"]').val();
+                    var primero = parseInt(primerot);
+                    var segundo = parseInt(segundot);
+                    var tercero = parseInt(tercerot);
+                    var cuarto = parseInt(cuartot);
+
+                    if(primerot == '' || segundot == '' || tercerot == '' || cuartot == '' || primero < 1 || segundo < 1 || tercero < 1 || cuarto < 1) {
+                        $('#mensajealerta').html('Los valores tienen que ser números naturales mayores a 0');
+                        $('.valordinamico').each(function(){
+                            $(this).html('');
+                        });
+                        if(graficaarbol != null) {
+                            graficaarbol.destroy();
+                            graficaarbol = null;
+                        }
+                        if(graficavenn != null) {
+                            graficavenn.destroy();
+                            graficavenn = null;
+                        }
+                        toast.show();
+                        return;
+                    }
+                    
+                    $('#valora').html(primero + segundo);
+                    $('#valorb').html(tercero + cuarto);
+                    $('#valorab').html(primero + tercero);
+                    $('#valorba').html(segundo + cuarto);
+
+                    $('#total').val(primero + segundo + tercero + cuarto).trigger('change');
+                });
+
+                $('#total').trigger('change');
+            });
+        </script>
+  </body>
+</html>
