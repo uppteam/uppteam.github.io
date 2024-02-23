@@ -1,4 +1,6 @@
 [
 null,
-{"id":1,"expanded":false,"name":"Expresiones","order":1,"parentId":0,"scrollX":811,"scrollY":453}
+{"id":1,"expanded":false,"name":"Expresiones","order":1,"parentId":0,"scrollX":791.2,"scrollY":448},
+{"id":2,"expanded":false,"name":"Menu Principal","order":2,"parentId":0,"scrollX":655.2,"scrollY":362.4},
+{"id":3,"expanded":false,"name":"Problemas","order":3,"parentId":0,"scrollX":832,"scrollY":640}
 ]
