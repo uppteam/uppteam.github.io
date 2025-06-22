@@ -6,160 +6,180 @@
     	<meta http-equiv="X-UA-Compatible" content="ie=edge">
     	<meta name="author" content="Susana Ocampo Santos">
     	<title>Material de estudio por Susana Ocampo Santos</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
     </head>
-	<body style="background-color: #e7e7e7;">
-    	<div class="container mt-3">
-       		<h1>Fracciones</h1>
-            <h2>Por: Susana Ocampo Santos</h2>
-            <div class="card">
-                <div class="row d-flex align-items-center m-3">
-                    <div class="col-4">
-                        <label class="form-label">Ingresa una fracción</label>
-                        <br>
-                        <span class="errorspan text-danger" id="errorfraccion"></span>
+    <body class="bg-primary-subtle h-100">
+        <nav class="navbar bg-primary" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="https://uppteam.github.io/">
+                    Material de estudio
+                </a>
+            </div>
+        </nav>
+    	<div class="d-flex">
+            <div class="container mt-3">
+                <div class="card">
+                    <h3 class="card-header">Fracciones</h3>
+                    <div class="card-body">
+                        <div class="row d-flex align-items-center m-3">
+                            <div class="col-4">
+                                <label class="form-label">Ingresa una fracción</label>
+                                <br>
+                                <span class="errorspan text-danger" id="errorfraccion"></span>
+                            </div>
+                            <div class="col-2">
+                                <input type="number" min="1" value="1" class="form-control border border border-secondary-subtle fraccion" id="numerador">
+                                <hr class="rounded opacity-100">
+                                <input type="number" min="1" value="1" class="form-control border border border-secondary-subtle fraccion" id="denominador">
+                            </div>
+                        </div>
+                        <figure class="highcharts-figure">
+                            <div id="container"></div>
+                        </figure>
                     </div>
-                    <div class="col-2">
-                        <input type="number" min="1" value="1" class="form-control fraccion" id="numerador">
-                        <hr class="rounded">
-                        <input type="number" min="1" value="1" class="form-control fraccion" id="denominador">
-                    </div>
+                    <h4 class="card-footer fw-bolder">Por: Susana Ocampo Santos</h4>
                 </div>
-                <figure class="highcharts-figure">
-                    <div id="container"></div>
-                </figure>
             </div>
         </div>
-        <script>
-            let grafica = null;
+    </body>
+	<script>
+        let grafica = null;
 
-            $('.fraccion').on('change', function() {
-                $('#errorfraccion').text('');
-                $('.fraccion').removeClass('errorstyle');
+        $('.fraccion').on('change', function() {
+            $('#errorfraccion').text('');
+            $('.fraccion').removeClass('errorstyle');
 
-                let numerador = parseInt($('#numerador').val());
-                let denominador = parseInt($('#denominador').val());
-                if (numerador <= 0 || numerador >= 1000000000000) {
-                    $('#numerador').addClass('errorstyle');
-                    $('#errorfraccion').text('Ingrese un numerador valido');
-                    return;
-                }
-                if (denominador <= 0 || denominador >= 1000000000000) {
-                    $('#denominador').addClass('errorstyle');
-                    $('#errorfraccion').text('Ingrese un denominador valido');
-                    return;
-                }
-                if (numerador > denominador) {
-                    $('#numerador').addClass('errorstyle');
-                    $('#errorfraccion').text('El numerador debe ser menor o igual que el denominador');
-                    return;
-                }
-                let restante = denominador - numerador;
-                if(grafica != null) {
-                    grafica.destroy();
-                }
-                grafica = Highcharts.chart('container', {
-                    chart: {
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Representación de la fracción',
-                        align: 'left'
-                    },
+            let numerador = parseInt($('#numerador').val());
+            let denominador = parseInt($('#denominador').val());
+            if (numerador <= 0 || numerador >= 1000000000000) {
+                $('#numerador').addClass('errorstyle');
+                $('#errorfraccion').text('Ingrese un numerador valido');
+                return;
+            }
+            if (denominador <= 0 || denominador >= 1000000000000) {
+                $('#denominador').addClass('errorstyle');
+                $('#errorfraccion').text('Ingrese un denominador valido');
+                return;
+            }
+            if (numerador > denominador) {
+                $('#numerador').addClass('errorstyle');
+                $('#errorfraccion').text('El numerador debe ser menor o igual que el denominador');
+                return;
+            }
+            let restante = denominador - numerador;
+            if(grafica != null) {
+                grafica.destroy();
+            }
+            grafica = Highcharts.chart('container', {
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Representación de la fracción',
+                    align: 'left'
+                },
 
-                    plotOptions: {
-                        pie: {
-                            dataLabels: {
-                                distance: '100%',
-                                useHTML: true,
-                                formatter: function() {
-                                    return '<h3><sup>' + this.y + '</sup> &#8260; <sub>' + this.total +'</sub></h3><br>' + numerador_a_letras(this.y) + ' entre ' + numerador_a_letras(this.total);         
+                plotOptions: {
+                    pie: {
+                        dataLabels: {
+                            distance: '100%',
+                            useHTML: true,
+                            formatter: function() {
+                                if (this.y > 0) {
+                                    return '<h3><sup>' + this.y + '</sup> &#8260; <sub>' + this.total +'</sub></h3><br>' + numerador_a_letras(this.y) + ' entre ' + numerador_a_letras(this.total);
+                                } else {
+                                    return '';
                                 }
                             }
                         }
-                    },
+                    }
+                },
 
-                    tooltip: {
-                        //headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        useHTML: true,
-                        formatter: function() {
-                            return '<h3><sup>' + this.y + '</sup> &#8260; <sub>' + this.total +'</sub></h3><br>' + numerador_a_letras(this.y) + ' entre ' + numerador_a_letras(this.total);         
-                        }
-                    },
+                tooltip: {
+                    useHTML: true,
+                    formatter: function() {
+                        if (this.y > 0) {
+                            return '<h3><sup>' + this.y + '</sup> &#8260; <sub>' + this.total +'</sub></h3><br>' + numerador_a_letras(this.y) + ' entre ' + numerador_a_letras(this.total); 
+                        } else {
+                            return '';
+                        } 
+                    }
+                },
 
-                    series: [
-                        {
-                            data: [
-                                {
-                                    name: 'Fracción',
-                                    color: 'red',
-                                    y: numerador,
-                                },
-                                {
-                                    name: '',
-                                    color: 'white',
-                                    y: restante,
-                                },
-                            ]
-                        },
-                    ],
-                });
+                series: [
+                    {
+                        data: [
+                            {
+                                name: 'Fracción',
+                                color: 'red',
+                                y: numerador,
+                            },
+                            {
+                                name: '',
+                                color: 'white',
+                                y: restante,
+                            },
+                        ]
+                    },
+                ],
             });
-        
-            numerador_unidades = ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve'];
-            numerador_especiales = ['diez', 'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis', 'diecisiete', 'dieciocho', 'diecinueve'];
-            numerador_decenas = ['', '', 'veinte', 'treinta', 'cuarenta', 'cincuenta', 'sesenta', 'setenta', 'ochenta', 'noventa'];
-            numerador_centenas = ['', 'ciento', 'doscientos', 'trescientos', 'cuatrocientos', 'quinientos', 'seiscientos', 'setecientos', 'ochocientos', 'novecientos'];
-            function numerador_a_letras(numero) {
-                numero = parseInt(numero);
-                if (0 <= numero && numero < 10) {
-                    return numerador_unidades[numero];
-                }
-                else if (10 <= numero && numero < 20) {
-                    return numerador_especiales[numero - 10];
-                }
-                else if (20 <= numero && numero < 100) {
-                    let decenas = numerador_decenas[parseInt(numero / 10)];
-                    if (numero % 10 == 0){
-                        return decenas;
-                    } else {
-                        return decenas + " y " + numerador_unidades[numero % 10];
-                    }
-                }
-                else if (100 <= numero && numero < 1000) {
-                    let centenas = numerador_centenas[parseInt(numero / 100)];
-                    if (numero % 100 == 0){
-                        return centenas == 'ciento' ? 'cien' : centenas;
-                    } else {
-                        return centenas + " " + numerador_a_letras(numero % 100);
-                    }
-                }
-                else if (1000 <= numero && numero < 1000000) {
-                    let miles = numerador_a_letras(numero / 1000);
-                    miles = miles == 'uno' ? '' : miles;
-                    if (numero % 1000 == 0){
-                        return miles + " mil"
-                    } else {
-                        return miles + " mil " + numerador_a_letras(numero % 1000)
-                    }
-                }
-                else if (1000000 <= numero && numero < 1000000000000) {
-                    let millones = numerador_a_letras(numero / 1000000);
-                    millones = millones == 'uno' ? ' un millón' : millones + ' millones';
-                    if (numero % 1000000 == 0){
-                        return millones
-                    } else {
-                        return millones + ' ' + numerador_a_letras(numero % 1000000)
-                    }
-                }
-                else {
-                    return 'N/A';
+        });
+    
+        numerador_unidades = ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve'];
+        numerador_especiales = ['diez', 'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis', 'diecisiete', 'dieciocho', 'diecinueve'];
+        numerador_decenas = ['', '', 'veinte', 'treinta', 'cuarenta', 'cincuenta', 'sesenta', 'setenta', 'ochenta', 'noventa'];
+        numerador_centenas = ['', 'ciento', 'doscientos', 'trescientos', 'cuatrocientos', 'quinientos', 'seiscientos', 'setecientos', 'ochocientos', 'novecientos'];
+        function numerador_a_letras(numero) {
+            numero = parseInt(numero);
+            if (0 <= numero && numero < 10) {
+                return numerador_unidades[numero];
+            }
+            else if (10 <= numero && numero < 20) {
+                return numerador_especiales[numero - 10];
+            }
+            else if (20 <= numero && numero < 100) {
+                let decenas = numerador_decenas[parseInt(numero / 10)];
+                if (numero % 10 == 0){
+                    return decenas;
+                } else {
+                    return decenas + " y " + numerador_unidades[numero % 10];
                 }
             }
-        </script>
-    </body>
+            else if (100 <= numero && numero < 1000) {
+                let centenas = numerador_centenas[parseInt(numero / 100)];
+                if (numero % 100 == 0){
+                    return centenas == 'ciento' ? 'cien' : centenas;
+                } else {
+                    return centenas + " " + numerador_a_letras(numero % 100);
+                }
+            }
+            else if (1000 <= numero && numero < 1000000) {
+                let miles = numerador_a_letras(numero / 1000);
+                miles = miles == 'uno' ? '' : miles;
+                if (numero % 1000 == 0){
+                    return miles + " mil"
+                } else {
+                    return miles + " mil " + numerador_a_letras(numero % 1000)
+                }
+            }
+            else if (1000000 <= numero && numero < 1000000000000) {
+                let millones = numerador_a_letras(numero / 1000000);
+                millones = millones == 'uno' ? ' un millón' : millones + ' millones';
+                if (numero % 1000000 == 0){
+                    return millones
+                } else {
+                    return millones + ' ' + numerador_a_letras(numero % 1000000)
+                }
+            }
+            else {
+                return 'N/A';
+            }
+        }
+    </script>
 </html>
